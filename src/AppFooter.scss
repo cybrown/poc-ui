@@ -1,0 +1,11 @@
+.AppFooter {
+    user-select: none;
+
+    &--content {
+        background-color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        border-top: rgba(101, 119, 134, 0.2) 1px solid;
+    }
+}

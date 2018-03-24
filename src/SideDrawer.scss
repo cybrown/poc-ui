@@ -1,0 +1,65 @@
+.SideDrawer {
+    position: absolute;
+    top: 0;
+    user-select: none;
+
+    &--backdrop {
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        background-color: black;
+        transition: 500ms;
+        transition-property: opacity;
+        overflow: scroll;
+        overscroll-behavior-y: none;
+        -webkit-overflow-scrolling: touch;
+
+        &:after {
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: -1000px;
+            left: 0;
+            right: 0;
+            content: ' ';
+        }
+    }
+
+    &--container {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 300px;
+        max-width: 80vw;
+        background-color: white;
+        overflow: scroll;
+        overscroll-behavior-y: contain;
+        -webkit-overflow-scrolling: touch;
+        transform: translateX(-100%);
+        transition: 500ms;
+        transition-property: transform;
+        box-shadow: rgb(101, 119, 134) 0px 0px 4px;
+    }
+
+    &.SideDrawer--moving {
+
+        .SideDrawer--backdrop {
+            transition: none;
+        }
+
+        .SideDrawer--container {
+            transition: none;
+        }
+    }
+
+    &.SideDrawer--hidden {
+
+        .SideDrawer--container {
+            box-shadow: none;
+        }
+
+        .SideDrawer--backdrop, .SideDrawer--backdrop:after {
+            display: none;
+        }
+    }
+}

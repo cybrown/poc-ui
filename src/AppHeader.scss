@@ -1,0 +1,66 @@
+.AppHeader {
+    user-select: none;
+
+    &--content {
+        position: fixed;
+        background-color: white;
+        width: 100%;
+        box-shadow: rgb(101, 119, 134) 0px 0px 4px;
+    }
+
+    &--title {
+        font-weight: 300;
+        text-align: center;
+    }
+
+    &--nav {
+        display: flex;
+
+        & > * {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            color: rgb(110, 126, 126);
+            padding-top: 4px;
+            padding-bottom: 4px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 100%;
+            position: relative;
+
+            & > i {
+                font-size: 1.5rem;
+            }
+
+            & > div {
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                font-weight: 300;
+            }
+
+            &:after {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                content: ' ';
+                transition: 250ms;
+                transition-property: background-color;
+            }
+        }
+
+        & > .active {
+            color: rgb(0, 126, 126);
+            background-image: radial-gradient(ellipse at bottom, rgb(229, 247, 247), white 75%, white);
+
+            &:after {
+                background-color: rgb(0, 126, 126);
+            }
+
+            & > div {
+                font-weight: 400;
+            }
+        }
+    }
+}
