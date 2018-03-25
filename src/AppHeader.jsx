@@ -23,6 +23,7 @@ export default class AppHeader extends React.Component {
 
     componentDidMount() {
         document.addEventListener('scroll', this.scrollEventListener);
+        setTimeout(() => this.forceUpdate());
     }
 
     componentWillUnmount() {
@@ -31,12 +32,10 @@ export default class AppHeader extends React.Component {
 
     grabContent = element => {
         this.$content = element;
-        this.forceUpdate();
     }
 
     grabScrollHidden = element => {
         this.$scrollHidden = element;
-        this.forceUpdate();
     }
 
     get contentHeight() {
