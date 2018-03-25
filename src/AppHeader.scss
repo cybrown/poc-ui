@@ -28,11 +28,11 @@
             flex-basis: 100%;
             position: relative;
 
-            & > i {
+            & > a > i {
                 font-size: 1.5rem;
             }
 
-            & > div {
+            & > a > div {
                 font-size: 0.75rem;
                 text-transform: uppercase;
                 font-weight: 300;
@@ -58,7 +58,7 @@
                 background-color: rgb(0, 126, 126);
             }
 
-            & > div {
+            & > a > div {
                 font-weight: 400;
             }
         }

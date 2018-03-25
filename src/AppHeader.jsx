@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 import './AppHeader.scss';
 
@@ -77,16 +78,22 @@ export default class AppHeader extends React.Component {
                     </div>
                     <div className="AppHeader--nav">
                         <div className={this.state.activeIndex == 0 ? 'active' : ''} onClick={() => this.setState({activeIndex: 0})}>
-                            <i className="fa fa-home" />
-                            <div>Home</div>
+                            <Link to="/">
+                                <i className="fa fa-home" />
+                                <div>Home</div>
+                            </Link>
                         </div>
                         <div className={this.state.activeIndex == 1 ? 'active' : ''} onClick={() => this.setState({activeIndex: 1})}>
-                            <i className="fa fa-list" />
-                            <div>List</div>
+                            <Link to="/">
+                                <i className="fa fa-list" />
+                                <div>List</div>
+                            </Link>
                         </div>
                         <div className={this.state.activeIndex == 2 ? 'active' : ''} onClick={() => this.setState({activeIndex: 2})}>
-                            <i className="fa fa-user-circle" />
-                            <div>Profile</div>
+                            <Link to="/profile">
+                                <i className="fa fa-user-circle" />
+                                <div>Profile</div>
+                            </Link>
                         </div>
                     </div>
                 </div>
