@@ -16,7 +16,7 @@
     &--nav {
         display: flex;
 
-        & > * {
+        & > a {
             display: flex;
             flex-direction: column;
             text-align: center;
@@ -28,11 +28,11 @@
             flex-basis: 100%;
             position: relative;
 
-            & > a > i {
+            & > i {
                 font-size: 1.5rem;
             }
 
-            & > a > div {
+            & > div {
                 font-size: 0.75rem;
                 text-transform: uppercase;
                 font-weight: 300;
@@ -48,18 +48,18 @@
                 transition: 250ms;
                 transition-property: background-color;
             }
-        }
 
-        & > .active {
-            color: rgb(0, 126, 126);
-            background-image: radial-gradient(ellipse at bottom, rgb(229, 247, 247), white 75%, white);
+            &.active {
+                color: rgb(0, 126, 126);
+                background-image: radial-gradient(ellipse at bottom, rgb(229, 247, 247), white 75%, white);
 
-            &:after {
-                background-color: rgb(0, 126, 126);
-            }
+                &:after {
+                    background-color: rgb(0, 126, 126);
+                }
 
-            & > a > div {
-                font-weight: 400;
+                & > div {
+                    font-weight: 400;
+                }
             }
         }
     }

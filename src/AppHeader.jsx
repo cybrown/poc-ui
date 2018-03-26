@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './AppHeader.scss';
 
@@ -76,24 +76,18 @@ export default class AppHeader extends React.Component {
                         </h1>
                     </div>
                     <div className="AppHeader--nav">
-                        <div className={this.state.activeIndex == 0 ? 'active' : ''} onClick={() => this.setState({activeIndex: 0})}>
-                            <Link to="/">
-                                <i className="fa fa-home" />
-                                <div>Home</div>
-                            </Link>
-                        </div>
-                        <div className={this.state.activeIndex == 1 ? 'active' : ''} onClick={() => this.setState({activeIndex: 1})}>
-                            <Link to="/list">
-                                <i className="fa fa-list" />
-                                <div>List</div>
-                            </Link>
-                        </div>
-                        <div className={this.state.activeIndex == 2 ? 'active' : ''} onClick={() => this.setState({activeIndex: 2})}>
-                            <Link to="/profile">
-                                <i className="fa fa-user-circle" />
-                                <div>Profile</div>
-                            </Link>
-                        </div>
+                        <NavLink to="/" exact activeClassName="active">
+                            <i className="fa fa-home" />
+                            <div>Home</div>
+                        </NavLink>
+                        <NavLink to="/list" exact activeClassName="active">
+                            <i className="fa fa-list" />
+                            <div>List</div>
+                        </NavLink>
+                        <NavLink to="/profile" exact activeClassName="active">
+                            <i className="fa fa-user-circle" />
+                            <div>Profile</div>
+                        </NavLink>
                     </div>
                 </div>
             </div>
