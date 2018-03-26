@@ -15,19 +15,36 @@ export default class AppHeader extends React.Component {
     scaleFactor = 4;
 
     scrollEventListener = (event) => {
-        this.setState(state => ({
-            scrollTitle: window.scrollY <= 0 ? 0 : Math.max(0, Math.min(this.scrollHiddenHeight * this.scaleFactor, state.scrollTitle + (window.scrollY - this.oldScrollY))),
-        }));
-        this.oldScrollY = window.scrollY;
+        if (this.props.scrollTarget) {
+            this.setState(state => ({
+                scrollTitle: this.props.scrollTarget.scrollTop <= 0 ? 0 : Math.max(0, Math.min(this.scrollHiddenHeight * this.scaleFactor, state.scrollTitle + (this.props.scrollTarget.scrollTop - this.oldScrollY))),
+            }));
+            this.oldScrollY = this.props.scrollTarget.scrollTop;
+        }
     }
 
     componentDidMount() {
-        document.addEventListener('scroll', this.scrollEventListener);
+        if (this.props.scrollTarget) {
+            this.props.scrollTarget.addEventListener('scroll', this.scrollEventListener);
+        }
         setTimeout(() => this.forceUpdate());
     }
 
+    componentWillReceiveProps(props) {
+        if (this.props.scrollTarget != props.scrollTarget) {
+            if (this.props.scrollTarget) {
+                this.props.scrollTarget.removeEventListener('scroll', this.scrollEventListener);
+            }
+            if (props.scrollTarget) {
+                props.scrollTarget.addEventListener('scroll', this.scrollEventListener);
+            }
+        }
+    }
+
     componentWillUnmount() {
-        document.removeEventListener('scroll', this.scrollEventListener);
+        if (this.props.scrollTarget) {
+            this.props.scrollTarget.removeEventListener('scroll', this.scrollEventListener);
+        }
     }
 
     grabContent = element => {
@@ -52,7 +69,7 @@ export default class AppHeader extends React.Component {
         } = this.state;
         const scale = scrollTitle / (this.contentHeight || 1) / this.scaleFactor;
         return (
-            <div className="AppHeader" style={{height: this.contentHeight}}>
+            <div className="AppHeader" style={{height: this.contentHeight - scrollTitle / this.scaleFactor}}>
                 <div
                     ref={this.grabContent}
                     className="AppHeader--content"

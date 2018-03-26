@@ -1,5 +1,6 @@
 .AppFooter {
     user-select: none;
+    flex-shrink: 0;
 
     &--content {
         background-color: white;

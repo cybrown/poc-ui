@@ -59,13 +59,23 @@ export default class AppLayout extends React.Component {
         }
     }
 
+    grabAppLayoutContent = elem => {
+        if (elem) {
+            this.$appLayoutContent = ReactDOM.findDOMNode(elem);
+            this.forceUpdate();
+        }
+    }
+
     render() {
         return (
             <div className="AppLayout">
-                <AppHeader />
+                <AppHeader scrollTarget={this.$appLayoutContent} />
                 <Route render={({location, history}) => (
                     this.history = history,
-                    <TransitionGroup className={'AppLayout--content ' + (this.state.isBackNavigation ? 'AppLayout--navigation-previous' : '')}>
+                    <TransitionGroup
+                        ref={this.grabAppLayoutContent}
+                        className={'AppLayout--content ' + (this.state.isBackNavigation ? 'AppLayout--navigation-previous' : '')}
+                    >
                         <CSSTransition
                             ref={this.grabTransitionElement}
                             key={location.pathname}

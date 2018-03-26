@@ -1,11 +1,16 @@
 .AppHeader {
     user-select: none;
+    flex-shrink: 0;
+    transition-property: height;
+    transition: 50ms linear;
 
     &--content {
         position: fixed;
         background-color: white;
         width: 100%;
         box-shadow: rgb(101, 119, 134) 0px 0px 4px;
+        transition-property: transform;
+        transition: 50ms linear;
     }
 
     &--title {
