@@ -6,6 +6,11 @@ $timeout: 300ms;
         opacity: 1;
         transform: translateX(100%);
         position: absolute;
+
+        &.force-position {
+            transform: translateX(100%);
+            transition-property: none;
+        }
     }
 
     .AppLayout--content-animated-enter-active {
@@ -33,6 +38,11 @@ $timeout: 300ms;
 
         .AppLayout--content-animated-enter {
             transform: translateX(-100%);
+
+            &.force-position {
+                transform: translateX(-100%);
+                transition-property: none;
+            }
         }
 
         .AppLayout--content-animated-enter-active {

@@ -17,11 +17,15 @@ export default class AppLayout extends React.Component {
     keys = [];
     currentKey = null;
 
+    state = {
+        isBackNavigation: false,
+    };
+
     componentDidMount() {
         this.keys.push(this.history.location.key);
         this.unlisten = this.history.listen((state, action) => {
             if (action === 'PUSH') {
-                this.$transition.className = '';
+                this.setState({isBackNavigation: false});
                 this.keys.push(state.key);
             } else if (action === 'POP') {
                 const fromIndex = this.keys.indexOf(this.currentKey);
@@ -34,18 +38,10 @@ export default class AppLayout extends React.Component {
                     console.log('unknown to state');
                     location.reload();
                 }
-                const isBackward = fromIndex > toIndex;
-                if (isBackward) {
-                    this.$transition.className = 'AppLayout--navigation-previous';
-                    const $node = this.$transition.querySelector('.AppLayout--content-animated-enter')
-                    $node.setAttribute('style', 'transform: translateX(-100%); transition-property: none');
-                    setTimeout(() => $node.removeAttribute('style'));
-                } else {
-                    this.$transition.className = '';
-                    const $node = this.$transition.querySelector('.AppLayout--content-animated-enter')
-                    $node.setAttribute('style', 'transform: translateX(100%); transition-property: none');
-                    setTimeout(() => $node.removeAttribute('style'));
-                }
+                this.setState({isBackNavigation: fromIndex > toIndex});
+                const $node = this.$transitionElement;
+                $node.classList.add('force-position');
+                setTimeout(() => $node.classList.remove('force-position'));
             }
             this.currentKey = this.history.location.key;
         })
@@ -57,8 +53,10 @@ export default class AppLayout extends React.Component {
         }
     }
 
-    grabTransition = elem => {
-        this.$transition = ReactDOM.findDOMNode(elem);
+    grabTransitionElement = elem => {
+        if (elem) {
+            this.$transitionElement = ReactDOM.findDOMNode(elem);
+        }
     }
 
     render() {
@@ -67,8 +65,13 @@ export default class AppLayout extends React.Component {
                 <AppHeader />
                 <Route render={({location, history}) => (
                     this.history = history,
-                    <TransitionGroup ref={this.grabTransition}>
-                        <CSSTransition key={location.pathname} timeout={300} classNames="AppLayout--content-animated">
+                    <TransitionGroup className={'AppLayout--content ' + (this.state.isBackNavigation ? 'AppLayout--navigation-previous' : '')}>
+                        <CSSTransition
+                            ref={this.grabTransitionElement}
+                            key={location.pathname}
+                            timeout={300}
+                            classNames="AppLayout--content-animated"
+                        >
                             <Switch location={location}>
                                 <Route strict exact path="/" component={HomePage} />
                                 <Route strict exact path="/list" component={ListPage} />
