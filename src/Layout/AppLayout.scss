@@ -1,0 +1,46 @@
+$timeout: 300ms;
+
+.AppLayout {
+
+    .AppLayout--content-animated-enter {
+        opacity: 1;
+        transform: translateX(100%);
+        position: absolute;
+    }
+
+    .AppLayout--content-animated-enter-active {
+        transition: $timeout linear;
+        transition-property: transform opacity;
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .AppLayout--content-animated-exit {
+        transition: $timeout linear;
+        transition-property: transform opacity;
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .AppLayout--content-animated-exit-active {
+        opacity: 0;
+        transform: translateX(-100%);
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .AppLayout--navigation-previous {
+
+        .AppLayout--content-animated-enter {
+            transform: translateX(-100%);
+        }
+
+        .AppLayout--content-animated-enter-active {
+            transform: translateX(0);
+        }
+
+        .AppLayout--content-animated-exit-active {
+            transform: translateX(100%);
+        }
+    }
+}

@@ -1,50 +1,6 @@
 @import 'reset';
 @import 'init';
 
-$timeout: 300ms;
-
 body {
     font-family: Lato;
-}
-
-.route-animation-enter {
-    opacity: 1;
-    transform: translateX(100%);
-    position: absolute;
-}
-
-.route-animation-enter-active {
-    transition: $timeout linear;
-    transition-property: transform opacity;
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.route-animation-exit {
-    transition: $timeout linear;
-    transition-property: transform opacity;
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.route-animation-exit-active {
-    opacity: 0;
-    transform: translateX(-100%);
-    position: absolute;
-    pointer-events: none;
-}
-
-.prev {
-
-    .route-animation-enter {
-        transform: translateX(-100%);
-    }
-
-    .route-animation-enter-active {
-        transform: translateX(0);
-    }
-
-    .route-animation-exit-active {
-        transform: translateX(100%);
-    }
 }
