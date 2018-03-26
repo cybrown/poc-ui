@@ -83,7 +83,7 @@ export default class AppHeader extends React.Component {
                             </Link>
                         </div>
                         <div className={this.state.activeIndex == 1 ? 'active' : ''} onClick={() => this.setState({activeIndex: 1})}>
-                            <Link to="/">
+                            <Link to="/list">
                                 <i className="fa fa-list" />
                                 <div>List</div>
                             </Link>
